@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "deploy-test"
+  labels:
+    name: "deploy-test"
+  annotations:
+    description: "deploy-plugin"
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      name: "deploy-test"
+  template:
+    metadata:
+      labels:
+        name: "deploy-test"
+    spec:
+      containers:
+        - name: "deploy-test"
+          image: "alpine:3.14"
+          command:
+            - sleep
+            - "3600"
+          resources:
+            limits:
+              cpu: 200m
+              memory: 500Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
